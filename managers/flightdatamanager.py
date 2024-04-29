@@ -12,14 +12,14 @@ class FlightDataManager:
         "apikey": API_KEY
     }
 
-    PARAMS = {
+    CITY_PARAMS = {
         "term": ""
     }
 
     def getCityIataCode(self, cityName: str):
-        self.PARAMS["term"] = cityName
+        self.CITY_PARAMS["term"] = cityName
         checkIataCodeUri = f"{self.API_BASE_URL}/locations/query"
-        respose = requests.get(url=checkIataCodeUri, headers=self.AUTH_HEADERS, params=self.PARAMS)
+        respose = requests.get(url=checkIataCodeUri, headers=self.AUTH_HEADERS, params=self.CITY_PARAMS)
         respose.raise_for_status()
 
         responseList = respose.json().get("locations")[0]
